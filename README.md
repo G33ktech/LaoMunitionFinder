@@ -1,5 +1,15 @@
 # LaoMunitionFinder
 A visual aid to locate sites of possible UXB contamination in Laos
+
+Version History
+V1 2012 
+V2 2014
+V3 2015 Deakin University project
+V4 2016 Mainly PHP(security) and CSS mods - not workable at the moment
+V5 2020 Github versioning begins from V3
+
+
+Preamble
 Laos is a South East Asian country boarded by China, Vietnam, Cambodia, Thailand and Burma. Its 2015 population is just over 7 million people. The country was greatly affected by war during the 1960's and 1970's. To get an understanding of the devastation caused as a result of the Vietnam War between 1964 and 1973, below are a few statistics as purported by the Mine Advisory Group (MAG).
 
 
