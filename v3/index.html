@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html>
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="deakin.css"> 
+    <title>Home</title>
+
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDFgB_ezGiDhyzfozienoYq-Qyu-nF6iWc&sensor=false"> </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+   
+    <script type="text/javascript" src="resources/markerclusterer_compiled.js"></script>
+	<script>
+	// Here we set up the two maps and connect them up. 
+  var mapNav;
+  var mapProp;
+  var latt = 17.499;
+  var lng =  105.323;
+  var myCenter=new google.maps.LatLng(latt,lng);
+  var markers = [];
+  var rectangle; // For drawing on the nav map. 
+  var infowindowNav;
+  var infowindowProp;
+  var markerCluster;
+
+  function initialize(){
+      var mapN = {
+	center:myCenter,
+	zoom:7,
+	mapTypeId:google.maps.MapTypeId.ROADMAP
+	};
+      var mapP = {
+	center:myCenter,
+	zoom:17,
+	mapTypeId:google.maps.MapTypeId.SATELLITE
+	};
+  mapNav = new google.maps.Map(document.getElementById("googleMap"),mapN);
+  mapProp = new google.maps.Map(document.getElementById("eventMap"),mapP);
+  var marker;
+  document.getElementById("latt").value = latt;
+  document.getElementById("long").value = lng;
+			
+	function placeMarker(location) 
+		{
+			if ( marker ) 
+			{
+				marker.setPosition(location);
+			} else 
+			{
+				marker = new google.maps.Marker(
+				{
+					position: location,
+					map: mapNav
+				});
+			}
+			if (infowindowNav)
+			{
+				infowindowNav.setContent( 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng());
+			}
+			infowindowNav = new google.maps.InfoWindow(
+			{
+				content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+			});
+			infowindowNav.open(mapNav,marker);
+		}
+
+  google.maps.event.addListener(mapNav, 'click', function(event){
+	placeMarker(event.latLng);
+	var d = new Date();
+	var x = d.getTime();
+	//writeTime(x);
+	mapProp.panTo(event.latLng);
+	getWindowMarkers(mapProp);
+	if (rectangle)
+	{
+		rectangle.setBounds(mapProp.getBounds());
+	}
+	else
+	{
+		rectangle = new google.maps.Rectangle({
+			strokeColor: '#FF0000',
+			strokeOpacity: 0.8,
+			strokeWeight: 2,
+			fillColor: '#FF0000',
+			fillOpacity: 0.35,
+			map: mapNav,
+			bounds: mapProp.getBounds()
+	
+	});
+	}
+	});
+    }
+	
+	function getWindowMarkers(targetmap) 
+	{
+
+		//Show loading image
+		//$('#outputtext').html('Loading');
+		clearMarkers();
+		var bounds = targetmap.getBounds();
+		$.post("deakin/proximity_find.php",
+		{
+			mapfunction:'window',
+			swlat:bounds.getSouthWest().lat(),
+			swlong:bounds.getSouthWest().lng(),
+			nelat:bounds.getNorthEast().lat(),
+			nelong:bounds.getNorthEast().lng()
+		},
+		function(data, status)
+		{
+			// Hide loading image
+			
+			//$('#outputtext').html($(data).text());
+			
+			//var responsexml = $(data).find('description').first().text();
+			//$('#xmltext').html($(data).text());
+			$(data).find('st').each(function(index){
+				
+				var lat = $(this).find('lt').text();
+				var lng = $(this).find('lg').text();
+				var latLng = new google.maps.LatLng(lat,lng,false);
+				if (bounds.contains(latLng))
+				{
+					var contentData =  'Ordnance = ' +  $(this).find('od').text() + '<br/> BDA = ' + $(this).find('bda').first().text();
+					var icon;
+					switch ($(this).find('tg').text())
+					{
+						case 'Road':
+							icon = 'blue';
+							break;
+						case 'Building':
+							icon = 'green';
+							break;
+						default:
+							icon = 'red';
+							
+					}
+					icon = "http://maps.google.com/mapfiles/ms/icons/" + icon + ".png";
+					var marker = new google.maps.Marker({
+						position: latLng,
+						map: targetmap,
+						icon: new google.maps.MarkerImage(icon)
+					});
+					google.maps.event.addListener(marker, 'click', (function(marker, contentData) {
+						return function() {
+							infowindow.setContent(contentData);
+							infowindow.open(targetmap, marker);
+						}
+					})(marker, contentData));
+					markers.push(marker);
+				}
+				//placeBomb(position,contentData);
+			});
+			if (markerCluster)
+			{
+				markerCluster.addMarkers(markers);
+				markerCluster.setMap(targetmap);
+				markerCluster.redraw();
+			}
+			else
+			{		
+				markerCluster = new MarkerClusterer(targetmap, markers);
+			}
+
+			//$('#clustertext').html(markerCluster.getTotalClusters());
+		});
+	}
+	function setAllMap(map) {
+		for (var i = 0; i < markers.length; i++) {
+			markers[i].setMap(map);
+		}
+	}
+	function clearMarkers()
+	{
+		setAllMap(null);
+		markers = [];
+		if (markerCluster)
+			markerCluster.clearMarkers();
+	}
+  function writeTime(time){
+	document.getElementById("time").value = time;
+    }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>    
+</head> 
+    <body >
+        <div id="wrapper">
+            <header >
+                    <h1>Laos War Time Munitions Finder</h1>
+                    
+			<nav id="container">
+                <img id="lao_title" src="lao.png" />
+				<ul class="menu">
+				<li class="first_tab"><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="the_team.html">The Team</a></li>
+                <li class="last_tab"><a href="contact_us.html">Contact Us</a></li>
+                </ul>
+
+            </nav>
+			</header>
+            <br />
+            <div class="main">
+             <!-------------------Container for map and form element----------------->	
+	<div id="leftColumn" style="float:left;width:285px;height:420px;">
+		<div id="googleMap" style="width:280px;height:380px;">
+		</div>
+		<form id="login" action = "../proximity_find_2.php" method = "post">
+			<input type = "hidden" name = "latt" id = "latt"  />
+			<input type = "hidden" name = "long" id = "long"  />
+			<input type = "submit" name = "Submit" value = "Get Data" style="width:285px;height:40px;"/>
+		</form>
+	</div>
+<!-------------------Container for map event element----------------->	
+
+	<div id="eventMap" style="margin-left:300px; height:480px;border-style: solid; margin-right:10px ">
+	</div>  
+	</div>
+
+
+
+
+      <footer id="footer">
+            <div class="footer_img">
+                        <a href="https://www.deakin.edu.au" ><img src="deakinv2.jpg" alt="DEAKIN" /></a></div>
+                
+                <p class="footer1">Designed by - SIT782 Group 14 T1 2015</p>
+                <p class="footer2">This Web Site is for educational purposes only.<br /> 
+                Opinions expressed within this Web Site are not necessarily the views of Deakin University Australia.</p>
+            
+        </footer>
+       
+   </div>  
+        
+    </body>
+    </html>
+

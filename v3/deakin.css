@@ -1,0 +1,389 @@
+
+
+/*----------------------Global Seeting----------------------------*/
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Georgia, serif;
+    
+}
+
+html {
+	
+    
+    
+}
+
+body {
+    padding:0px;
+    margin:0px;
+    overflow: auto;
+    height:100%;
+}
+
+
+
+#wrapper {
+    background-image: linear-gradient(45deg, #F0F8FF 0%, #1791ff 100%); 
+    background-repeat: no-repeat;
+	z-index:0;
+    height: 100%;
+    
+    margin: auto;
+    padding-bottom: 20px;
+     
+}
+
+#lao_title {
+      
+    padding-left: 50px;
+
+}
+/*----------------------Navigation Menu----------------------------*/
+#container {
+         
+    width: 800px;
+    margin: 0 auto;
+    padding-left: 80px;
+      
+}
+
+.menu ul {
+    list-style: none;
+    display: inline;
+    margin: 0 auto;
+    float: left;
+   
+}
+
+.menu li {
+    
+    display: inline;
+    height: 50px;
+    width: 150px;
+    float: left;
+    background: -ms-linear-gradient(top, #F0F8FF 0%, #1791ff 100%);
+    
+    line-height: 50px;
+    text-align: center;
+    border-right: 1px solid #003362;
+    
+}
+
+.menu li a {
+    text-decoration: none;
+    color: white;
+    
+    }
+
+.first_tab {
+    border-bottom-left-radius:10px;
+    border-top-left-radius:10px;
+    
+}
+
+.last_tab {
+    border-bottom-right-radius:10px;
+    border-top-right-radius:10px;
+}
+
+.menu li:hover, li:visited, li:active a {
+    
+    background: -ms-linear-gradient(bottom, #F0F8FF 0%, #1791ff 100%);
+     
+}
+/*----------------------Footer----------------------------*/
+#footer {
+    
+    background-color: #00274a;
+    z-index: 0;
+    opacity: 1;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 80px;
+    
+}
+
+.footer_img img {
+     display: inline-block;   
+     height: 75px;
+     opacity: 1;
+     margin-left: 5px;
+     
+    }
+
+p.footer1 {
+        
+        color: white;
+        display: inline;
+        position: fixed;
+        bottom: 0px;
+        right: 2em;
+        font-size: smaller;
+        padding-right: 5px;
+        padding-bottom: 5px;
+        
+        
+
+    }
+    
+p.footer2 {
+        
+        color: white;
+        display: inline;
+        position: fixed;
+        bottom: 0px;
+        left: 5em;
+        padding-left: 20px;
+        font-size: smaller;
+        padding-bottom: 5px;
+        
+        
+
+    }
+
+/*----------------------General----------------------------*/
+#main {
+margin: auto;
+
+}
+
+.main {
+
+margin-bottom:0;
+
+}
+ 
+h1{
+    text-shadow: 0px 2px 3px #666;
+    text-align: center;
+    font-size: 30px;
+    color: #003362;
+    padding: 10px;
+
+}
+
+h2{
+    text-shadow: 2px 2px 0px #eee, 3px 3px 0px #707070;
+    text-align: center;
+    font-size: 20px;
+    color: #003362;
+}
+
+h3 {
+
+    text-align: center;
+    font-size: 10px;
+    color: #003362;
+}
+
+ h3.about {
+    text-align: left;
+    margin-left: 85px;
+    }
+	
+h3.about_aim {
+    text-align: center;
+    margin-left: 85px;
+	font-size: 20px;
+    }
+	
+h3.site_instruct {
+line-height: 75px;
+    text-align: left;
+    margin-left: 250px;
+	font-weight: bold;
+	color: #003362;
+	font-size: 40px;
+	
+}	
+
+h4 {
+    text-align: left;
+    font-size: 18px;
+    color: #003362;
+    font-weight: bold;
+    margin: 50px;
+}
+
+h4.team {
+    text-align: left;
+    font-size: 18px;
+    color: #003362;
+    font-weight: bold;
+    margin-left: 50px;
+    padding: 0px;
+   /* display:inline;*/
+ }
+
+.team_photos {
+    height: 80px;
+    width: auto;
+    display:inline;
+    position: absolute;
+    left: 400px;
+    padding-top: 20px;
+}
+
+p.the_team {
+    line-height: 30px;
+    text-align: left;
+    margin-left: 50px;
+    }
+
+p.the_team::first-letter {
+        font-size: 150%;
+        font-weight: bold;
+    }
+
+p.support {
+    line-height: 30px;
+    text-align: left;
+    margin-left: 50px;
+    }
+
+ul.support_page li {
+	line-height: 30px;
+    text-align: left;
+    margin-left: 100px;
+	font-weight: bold;
+	color: #003362;
+	list-style-type: none;
+	
+
+}
+
+img.ul_image {
+position: relative;
+display: inline;
+float: left;
+margin-left: 50px;
+
+}
+
+ol.landing_page {
+	line-height: 75px;
+    text-align: left;
+    margin-left: 250px;
+	font-weight: bold;
+	color: #003362;
+	font-size: 30px;
+	}
+	
+ol.landing_page li {
+	padding-left: 20px;
+	}
+
+.main {
+padding-top:50px;
+}
+
+.main p {
+    color: #003362;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: justify
+}
+
+p.about {
+    line-height: 30px;
+    }
+
+p.about::first-letter {
+        font-size: 150%;
+        font-weight: bold;
+    }
+
+ul.about {
+    color: #003362;
+    line-height: 40px;
+    margin-left: 100px;
+    margin-right: 50px;
+    font-weight: bold;
+}
+
+
+
+
+/*----------------------Email Form----------------------------*/
+
+label {
+    display:block;
+    margin-top:20px;
+    letter-spacing:2px;
+}
+
+.body {
+    display:block;
+    margin:0 auto;
+    width:576px;
+}
+
+form {
+    margin:0 auto;
+    width:459px;
+}
+
+
+textarea {
+	height:213px;
+	width:539px;
+    background:#efefef;
+    border:1px solid #dedede;
+    padding:10px;
+    margin-top:3px;
+    font-size:0.9em;
+    color:#003362;
+    border-radius:5px;
+}
+
+input {
+    width:539px;
+    height:27px;
+    background:#efefef;
+    border:1px solid #dedede;
+    padding:10px;
+    margin-top:3px;
+    font-size:0.9em;
+    color:#003362;
+    border-radius:5px;
+}	
+
+input:focus, textarea:focus {
+    border:1px solid #003362;
+}
+
+input.submit {
+    width:127px;
+    height:38px;
+    background: -ms-linear-gradient(top, #F0F8FF 0%, #1791ff 100%); 
+    border:none;
+    margin-top:20px;
+    cursor:pointer;
+    color: white;
+    font-size: 1.2em;
+    
+}
+
+input.submit:hover {
+	    background: -ms-linear-gradient(bottom, #F0F8FF 0%, #1791ff 100%);
+        box-shadow: 10px 10px 5px #888888;
+}		
+    
+ input.reset {
+    width:127px;
+    height:38px;
+    background: -ms-linear-gradient(top, #F0F8FF 0%, #1791ff 100%);
+    border:none;
+    margin-top:20px;
+    cursor:pointer;
+    color: white;
+    font-size: 1.2em;
+}
+
+input.reset:hover {
+        background: -ms-linear-gradient(bottom, #F0F8FF 0%, #1791ff 100%);
+        box-shadow: 10px 10px 5px #888888;
+}			

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="deakin.css"> 
+    <title>Contact Us</title>
+
+</head> 
+    <body>
+       <div id="wrapper">
+            <header >
+                    <h1>Laos War Time Munitions Finder</h1>
+                    
+			<nav id="container">
+               <img id="lao_title" src="lao.png" />
+				<ul class="menu">
+				<li class="first_tab"><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="support.html">Support</a></li>
+                <li><a href="the_team.html">The Team</a></li>
+                <li class="last_tab"><a href="contact_us.html">Contact Us</a></li>
+                </ul>
+
+            </nav>
+			</header>
+           <br />
+            <div class="main" style="padding-bottom:80px"">
+         <h2>Contact Us</h2>
+		 <p id="confirmation"><?php echo $reply ?></p>
+	<form class="body" method="post" action="contact_us.php">
+        
+		<label>Name</label>
+		<input name="name" placeholder="Type Here">
+				
+		<label>Email</label>
+		<input name="email" type="email" required placeholder="Type Here">
+				
+		<label>Message</label>
+		<textarea name="message" placeholder="Type Here"></textarea><br/>
+		<input class="reset" name="reset" type="reset" value="Reset" />       
+		<input class="submit" id="submit" name="submit" type="submit" value="Submit" />
+		
+        
+	</form>
+            
+            </div>
+
+
+
+
+      <footer id="footer">
+            <div class="footer_img">
+                        <a href="https://www.deakin.edu.au" ><img src="deakinv2.jpg" alt="DEAKIN" /></a>
+                
+                <p class="footer1">Designed by - SIT782 Group 14 T1 2015</p>
+                <p class="footer2">This Web Site is for educational purposes only.<br /> 
+                Opinions expressed within this Web Site are not necessarily the views of Deakin University Australia.</p>
+            </div>
+        </footer>
+       
+     </div>
+
+    </body>
+    </html>
+
